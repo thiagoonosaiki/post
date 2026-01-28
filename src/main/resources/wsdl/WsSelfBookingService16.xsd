@@ -1,0 +1,181 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1 (UNKNOWN_BRANCH-false; 2015-01-15T16:53:43+0100) JAXWS-RI/2.2.10 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><!--Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.1-b01-. --><xs:schema xmlns:ns2="http://lemontech.com.br/selfbooking/wsselfbooking/services/response" xmlns:ns1="http://lemontech.com.br/selfbooking/wsselfbooking/services/request" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://lemontech.com.br/selfbooking/wsselfbooking/services">
+
+	<xs:import namespace="http://lemontech.com.br/selfbooking/wsselfbooking/services/request" schemaLocation="WsSelfBookingService17.xsd"/>
+	<xs:import namespace="http://lemontech.com.br/selfbooking/wsselfbooking/services/response" schemaLocation="https://treinamento.lemontech.com.br:443/wsselfbooking/WsSelfBookingService?xsd=18"/>
+
+	<xs:element name="keyClient" nillable="true" type="xs:string"/>
+	<xs:element name="userName" nillable="true" type="xs:string"/>
+	<xs:element name="userPassword" nillable="true" type="xs:string"/>
+	
+	<xs:element name="pesquisarSolicitacao" nillable="true" type="ns1:pesquisarSolicitacaoRequest"/>
+	<xs:element name="pesquisarSolicitacaoResponse" nillable="true" type="ns2:pesquisarSolicitacaoResponse"/>
+	
+	<xs:element name="sincronizarSolicitacao" nillable="true" type="ns1:sincronizarSolicitacaoRequest"/>
+	<xs:element name="sincronizarSolicitacaoResponse" nillable="true" type="ns2:sincronizarSolicitacaoResponse"/>
+	
+	<xs:element name="cadastrarRegional" nillable="true" type="ns1:cadastrarRegionalRequest"/>
+	<xs:element name="cadastrarRegionalResponse" nillable="true" type="ns2:cadastrarRegionalResponse"/>
+	
+	<xs:element name="alterarStatusRegional" nillable="true" type="ns1:alterarStatusRegionalRequest"/>
+	<xs:element name="alterarStatusRegionalResponse" nillable="true" type="ns2:alterarStatusRegionalResponse"/>
+	
+	<xs:element name="cadastrarContaContabil" nillable="true" type="ns1:cadastrarContaContabilRequest"/>
+	<xs:element name="cadastrarContaContabilResponse" nillable="true" type="ns2:cadastrarContaContabilResponse"/>
+	
+	<xs:element name="alterarStatusContaContabil" nillable="true" type="ns1:alterarStatusContaContabilRequest"/>
+	<xs:element name="alterarStatusContaContabilResponse" nillable="true" type="ns2:alterarStatusContaContabilResponse"/>
+	
+	<xs:element name="cadastrarCentroDeCusto" nillable="true" type="ns1:cadastrarCentroDeCustoRequest"/>
+	<xs:element name="cadastrarCentroDeCustoResponse" nillable="true" type="ns2:cadastrarCentroDeCustoResponse"/>
+	
+	<xs:element name="alterarStatusCentroDeCusto" nillable="true" type="ns1:alterarStatusCentroDeCustoRequest"/>
+	<xs:element name="alterarStatusCentroDeCustoResponse" nillable="true" type="ns2:alterarStatusCentroDeCustoResponse"/>
+		
+	<xs:element name="cadastrarSubCentroDeCusto" nillable="true" type="ns1:cadastrarSubCentroDeCustoRequest"/>
+	<xs:element name="cadastrarSubCentroDeCustoResponse" nillable="true" type="ns2:cadastrarSubCentroDeCustoResponse"/>
+	
+	<xs:element name="alterarStatusSubCentroDeCusto" nillable="true" type="ns1:alterarStatusSubCentroDeCustoRequest"/>
+	<xs:element name="alterarStatusSubCentroDeCustoResponse" nillable="true" type="ns2:alterarStatusSubCentroDeCustoResponse"/>
+
+	<xs:element name="cadastrarFuncionario" nillable="true" type="ns1:cadastrarFuncionarioRequest"/>
+	<xs:element name="cadastrarFuncionarioResponse" nillable="true" type="ns2:cadastrarFuncionarioResponse"/>
+	
+	<xs:element name="pesquisarFuncionario" nillable="true" type="ns1:pesquisarFuncionarioRequest"/>
+	<xs:element name="pesquisarFuncionarioResponse" nillable="true" type="ns2:pesquisarFuncionarioResponse"/>
+	
+	<xs:element name="alterarStatusFuncionario" nillable="true" type="ns1:alterarStatusFuncionarioRequest"/>
+	<xs:element name="alterarStatusFuncionarioResponse" nillable="true" type="ns2:alterarStatusFuncionarioResponse"/>
+	
+	<xs:element name="cadastrarParametrizacaoCentroDeCusto" nillable="true" type="ns1:cadastrarParametrizacaoCentroDeCustoRequest"/>
+	<xs:element name="cadastrarParametrizacaoCentroDeCustoResponse" nillable="true" type="ns2:cadastrarParametrizacaoCentroDeCustoResponse"/>
+	
+	<xs:element name="deletarParametrizacaoCentroDeCusto" nillable="true" type="ns1:deletarParametrizacaoCentroDeCustoRequest"/>
+	<xs:element name="deletarParametrizacaoCentroDeCustoResponse" nillable="true" type="ns2:deletarParametrizacaoCentroDeCustoResponse"/>
+	
+	<xs:element name="cadastrarFornecedor" nillable="true" type="ns1:cadastrarFornecedorRequest"/>
+	<xs:element name="cadastrarFornecedorResponse" nillable="true" type="ns2:cadastrarFornecedorResponse"/>
+	
+	<xs:element name="alterarStatusFornecedor" nillable="true" type="ns1:alterarStatusFornecedorRequest"/>
+	<xs:element name="alterarStatusFornecedorResponse" nillable="true" type="ns2:alterarStatusFornecedorResponse"/>
+	
+	<xs:element name="cadastrarTarifario" nillable="true" type="ns1:cadastrarTarifarioRequest"/>
+	<xs:element name="cadastrarTarifarioResponse" nillable="true" type="ns2:cadastrarTarifarioResponse"/>
+
+	<xs:element name="alterarStatusTarifario" nillable="true" type="ns1:alterarStatusTarifarioRequest"/>
+	<xs:element name="alterarStatusTarifarioResponse" nillable="true" type="ns2:alterarStatusTarifarioResponse"/>
+
+	<xs:element name="aprovarSolicitacao" nillable="true" type="ns1:aprovarSolicitacaoRequest"/>
+	<xs:element name="aprovarSolicitacaoResponse" nillable="true" type="ns2:aprovarSolicitacaoResponse"/>
+
+	<xs:element name="reprovarSolicitacao" nillable="true" type="ns1:reprovarSolicitacaoRequest"/>
+	<xs:element name="reprovarSolicitacaoResponse" nillable="true" type="ns2:reprovarSolicitacaoResponse"/>
+
+	<xs:element name="inserirIdentificadorIntegracao" nillable="true" type="ns1:inserirIdentificadorIntegracaoRequest"/>
+	<xs:element name="inserirIdentificadorIntegracaoResponse" nillable="true" type="ns2:inserirIdentificadorIntegracaoResponse"/>
+	
+	<xs:element name="cadastrarParametrizacaoViajante" nillable="true" type="ns1:cadastrarParametrizacaoViajanteRequest"/>
+	<xs:element name="cadastrarParametrizacaoViajanteResponse" nillable="true" type="ns2:cadastrarParametrizacaoViajanteResponse"/>
+	
+	<xs:element name="deletarParametrizacaoViajante" nillable="true" type="ns1:deletarParametrizacaoViajanteRequest"/>
+	<xs:element name="deletarParametrizacaoViajanteResponse" nillable="true" type="ns2:deletarParametrizacaoViajanteResponse"/>
+	
+	<xs:element name="pesquisarVendasConsolidadora" nillable="true" type="ns1:pesquisarVendasConsolidadoraRequest"/>
+	<xs:element name="pesquisarVendasConsolidadoraResponse" nillable="true" type="ns2:pesquisarVendasConsolidadoraResponse"/>
+	
+	<xs:element name="cadastrarFornecedorSource" nillable="true" type="ns1:cadastrarFornecedorSourceRequest"/>
+	<xs:element name="cadastrarFornecedorSourceResponse" nillable="true" type="ns2:cadastrarFornecedorSourceResponse"/>
+	
+	<xs:element name="inserirItemDespesa" nillable="true" type="ns1:inserirItemDespesaRequest"/>
+	<xs:element name="inserirItemDespesaResponse" nillable="true" type="ns2:inserirItemDespesaResponse"/>
+	
+	<xs:element name="cadastrarProjeto" nillable="true" type="ns1:cadastrarProjetoRequest"/>
+	<xs:element name="cadastrarProjetoResponse" nillable="true" type="ns2:cadastrarProjetoResponse"/>
+	
+	<xs:element name="alterarStatusProjeto" nillable="true" type="ns1:alterarStatusProjetoRequest"/>
+	<xs:element name="alterarStatusProjetoResponse" nillable="true" type="ns2:alterarStatusProjetoResponse"/>
+	
+	<xs:element name="atualizarBudget" nillable="true" type="ns1:atualizarBudgetRequest"/>
+	<xs:element name="atualizarBudgetResponse" nillable="true" type="ns2:atualizarBudgetResponse"/>
+	
+	<xs:element name="consultaBilheteCia" nillable="true" type="ns1:consultaBilheteCiaRequest"/>
+	<xs:element name="consultaBilheteCiaResponse" nillable="true" type="ns2:consultaBilheteCiaResponse"/>
+	
+	<xs:element name="cadastrarHoteisHomologados" nillable="true" type="ns1:cadastrarHoteisHomologadosRequest"/>
+	<xs:element name="cadastrarHoteisHomologadosResponse" nillable="true" type="ns2:cadastrarHoteisHomologadosResponse"/>
+	
+	<xs:element name="atrelarUsuarios" nillable="true" type="ns1:atrelarUsuariosRequest"/>
+	<xs:element name="atrelarUsuariosResponse" nillable="true" type="ns2:atrelarUsuariosResponse"/>
+	
+	<xs:element name="finalizarSolicitacao" nillable="true" type="ns1:finalizarSolicitacaoRequest"/>
+	<xs:element name="finalizarSolicitacaoResponse" nillable="true" type="ns2:finalizarSolicitacaoResponse"/>
+	
+	<xs:element name="cadastrarTreinamento" nillable="true" type="ns1:cadastrarTreinamentoRequest"/>
+	<xs:element name="cadastrarTreinamentoResponse" nillable="true" type="ns2:cadastrarTreinamentoResponse"/>
+	
+	<xs:element name="cadastrarParticipanteTreinamento" nillable="true" type="ns1:cadastrarParticipanteTreinamentoRequest"/>
+	<xs:element name="cadastrarParticipanteTreinamentoResponse" nillable="true" type="ns2:cadastrarParticipanteTreinamentoResponse"/>
+	
+	<xs:element name="deletarTreinamento" nillable="true" type="ns1:deletarTreinamentoRequest"/>
+	<xs:element name="deletarTreinamentoResponse" nillable="true" type="ns2:deletarTreinamentoResponse"/>
+	
+	<xs:element name="deletarParticipanteTreinamento" nillable="true" type="ns1:deletarParticipanteTreinamentoRequest"/>
+	<xs:element name="deletarParticipanteTreinamentoResponse" nillable="true" type="ns2:deletarParticipanteTreinamentoResponse"/>
+	
+	<xs:element name="criarPreSolicitacao" nillable="true" type="ns1:criarPreSolicitacaoRequest"/>
+	<xs:element name="criarPreSolicitacaoResponse" nillable="true" type="ns2:criarPreSolicitacaoResponse"/>
+	
+	<xs:element name="contaBancaria" nillable="true" type="ns1:contaBancariaRequest"/>
+	<xs:element name="contaBancariaResponse" nillable="true" type="ns2:contaBancariaResponse"/>
+	
+	<xs:element name="importarDelegacaoParametrizacaoCentroDeCusto" nillable="true" type="ns1:importarDelegacaoParametrizacaoCentroDeCustoRequest"/>
+	<xs:element name="importarDelegacaoParametrizacaoCentroDeCustoResponse" nillable="true" type="ns2:importarDelegacaoParametrizacaoCentroDeCustoResponse"/>
+	
+	<xs:element name="cadastrarControleCliente" nillable="true" type="ns1:cadastrarControleClienteRequest"/>
+	<xs:element name="cadastrarControleClienteResponse" nillable="true" type="ns2:cadastrarControleClienteResponse"/>
+	
+	<xs:element name="cadastrarUnidadeNegocio" nillable="true" type="ns1:cadastrarUnidadeNegocioRequest"/>
+	<xs:element name="cadastrarUnidadeNegocioResponse" nillable="true" type="ns2:cadastrarUnidadeNegocioResponse"/>
+	
+	<xs:element name="importarFaturaCartaoCredito" nillable="true" type="ns1:importarFaturaCartaoCreditoRequest"/>
+	<xs:element name="importarFaturaCartaoCreditoResponse" nillable="true" type="ns2:importarFaturaCartaoCreditoResponse"/>
+	
+	<xs:element name="pesquisarAdiantamento" nillable="true" type="ns1:pesquisarAdiantamentoRequest"/>
+	<xs:element name="pesquisarAdiantamentoResponse" nillable="true" type="ns2:pesquisarAdiantamentoResponse"/>
+	
+	<xs:element name="pesquisarRelatorioDespesas" nillable="true" type="ns1:pesquisarRelatorioDespesasRequest"/>
+	<xs:element name="pesquisarRelatorioDespesasResponse" nillable="true" type="ns2:pesquisarRelatorioDespesasResponse"/>
+	
+	<xs:element name="importarDespesa" nillable="true" type="ns1:importarDespesaRequest"/>
+	<xs:element name="importarDespesaResponse" nillable="true" type="ns2:importarDespesaResponse"/>
+	
+	<xs:element name="liberarAdiantamento" nillable="true" type="ns1:liberarAdiantamentoRequest"/>
+	<xs:element name="liberarAdiantamentoResponse" nillable="true" type="ns2:liberarAdiantamentoResponse"/>
+	
+	<xs:element name="contabilizarRelatorioDespesas" nillable="true" type="ns1:contabilizarRelatorioDespesasRequest"/>
+	<xs:element name="contabilizarRelatorioDespesasResponse" nillable="true" type="ns2:contabilizarRelatorioDespesasResponse"/>
+	
+	<xs:element name="pesquisarLogsAcesso" nillable="true" type="ns1:pesquisarLogsAcessoRequest"/>
+	<xs:element name="pesquisarLogsAcessoResponse" nillable="true" type="ns2:pesquisarLogsAcessoResponse"/>
+	
+	<xs:element name="listarCentroDeCusto" nillable="true" type="ns1:listarCentroDeCustoRequest"/>
+	<xs:element name="listarCentroDeCustoResponse" nillable="true" type="ns2:listarCentroDeCustoResponse"/>
+	
+	<xs:element name="listarSubCentroDeCusto" nillable="true" type="ns1:listarSubCentroDeCustoRequest"/>
+	<xs:element name="listarSubCentroDeCustoResponse" nillable="true" type="ns2:listarSubCentroDeCustoResponse"/>
+	
+	<xs:element name="listarParametrizacaoCentroDeCusto" nillable="true" type="ns1:listarParametrizacaoCentroDeCustoRequest"/>
+	<xs:element name="listarParametrizacaoCentroDeCustoResponse" nillable="true" type="ns2:listarParametrizacaoCentroDeCustoResponse"/>
+	
+	<xs:element name="pesquisarConciliacaoCartao" nillable="true" type="ns1:pesquisarConciliacaoCartaoRequest"/>
+	<xs:element name="pesquisarConciliacaoCartaoResponse" nillable="true" type="ns2:pesquisarConciliacaoCartaoResponse"/>
+	
+	<xs:element name="cancelarSolicitacao" nillable="true" type="ns1:cancelarSolicitacaoRequest"/>
+	<xs:element name="cancelarSolicitacaoResponse" nillable="true" type="ns2:cancelarSolicitacaoResponse"/>
+	
+	<xs:element name="ping" nillable="true" type="ns1:pingRequest"/>
+	<xs:element name="pingResponse" nillable="true" type="ns2:pingResponse"/>
+	
+	<xs:element name="pesquisarContaBancaria" nillable="true" type="ns1:pesquisarContaBancariaRequest"/>
+	<xs:element name="pesquisarContaBancariaResponse" nillable="true" type="ns2:pesquisarContaBancariaResponse"/>
+	
+</xs:schema>

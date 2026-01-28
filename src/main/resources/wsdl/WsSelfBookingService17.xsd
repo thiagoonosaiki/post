@@ -1,0 +1,798 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1 (UNKNOWN_BRANCH-false; 2015-01-15T16:53:43+0100) JAXWS-RI/2.2.10 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. --><!--Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is JAX-WS RI 2.2.1-b01-. --><xs:schema xmlns:tns="http://lemontech.com.br/selfbooking/wsselfbooking/services/request" xmlns:ns1="http://lemontech.com.br/selfbooking/wsselfbooking/beans" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://lemontech.com.br/selfbooking/wsselfbooking/beans/fornecedor" xmlns:ns3="http://lemontech.com.br/selfbooking/wsselfbooking/beans/types" xmlns:ns4="http://lemontech.com.br/selfbooking/wsselfbooking/beans/aereo" xmlns:ns5="http://lemontech.com.br/selfbooking/wsselfbooking/beans/hotel" xmlns:ns6="http://lemontech.com.br/selfbooking/wsselfbooking/beans/carro" xmlns:ns7="http://lemontech.com.br/selfbooking/wsselfbooking/common/types" version="1.0" targetNamespace="http://lemontech.com.br/selfbooking/wsselfbooking/services/request">
+
+	<xs:import namespace="http://lemontech.com.br/selfbooking/wsselfbooking/beans" schemaLocation="https://treinamento.lemontech.com.br:443/wsselfbooking/WsSelfBookingService?xsd=1"/>
+	<xs:import namespace="http://lemontech.com.br/selfbooking/wsselfbooking/beans/fornecedor" schemaLocation="https://treinamento.lemontech.com.br:443/wsselfbooking/WsSelfBookingService?xsd=6"/>
+	<xs:import namespace="http://lemontech.com.br/selfbooking/wsselfbooking/beans/types" schemaLocation="https://treinamento.lemontech.com.br:443/wsselfbooking/WsSelfBookingService?xsd=14"/>
+	<xs:import namespace="http://lemontech.com.br/selfbooking/wsselfbooking/beans/aereo" schemaLocation="https://treinamento.lemontech.com.br:443/wsselfbooking/WsSelfBookingService?xsd=2"/>
+	<xs:import namespace="http://lemontech.com.br/selfbooking/wsselfbooking/beans/hotel" schemaLocation="https://treinamento.lemontech.com.br:443/wsselfbooking/WsSelfBookingService?xsd=7"/>
+	<xs:import namespace="http://lemontech.com.br/selfbooking/wsselfbooking/beans/carro" schemaLocation="https://treinamento.lemontech.com.br:443/wsselfbooking/WsSelfBookingService?xsd=3"/>
+	<xs:import namespace="http://lemontech.com.br/selfbooking/wsselfbooking/common/types" schemaLocation="https://treinamento.lemontech.com.br:443/wsselfbooking/WsSelfBookingService?xsd=15"/>
+
+	<xs:complexType name="pesquisarSolicitacaoRequest">
+		<xs:sequence>
+			<xs:element name="version" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="idSolicitacaoRef" type="xs:int"/>
+					<xs:element name="exibirCancelados" type="xs:boolean" default="false" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="exibirPendentesAprovacao" type="xs:boolean" default="false" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="dataInicial" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="dataFinal" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="registroInicial">
+						<xs:simpleType>
+							<xs:restriction base="xs:int">
+								<xs:minInclusive value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="quantidadeRegistros" default="50" minOccurs="0" maxOccurs="1">
+						<xs:simpleType>
+							<xs:restriction base="xs:int">
+								<xs:maxInclusive value="50"/>
+								<xs:minInclusive value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="sincronizado" type="xs:boolean" default="false" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="exibirCancelados" type="xs:boolean" default="false" minOccurs="0" maxOccurs="1"/>
+					<xs:element name="exibirPendentesAprovacao" type="xs:boolean" default="false" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:choice>
+			<xs:element name="exibirRemarks" type="xs:boolean" default="true" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="exibirAprovadas" type="xs:boolean" default="false" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="tipoSolicitacao" type="ns3:tipoSolicitacao" default="TODOS" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dataAlteracaoInicial" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dataAlteracaoFinal" type="xs:dateTime" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="sincronizarSolicitacaoRequest">
+		<xs:sequence>
+			<xs:element name="idSolicitacao" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="sincronizado" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="cadastrarRegionalRequest">
+		<xs:sequence>
+			<xs:element name="regional" type="ns1:regional" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="idCliente" type="xs:int" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="alterarStatusRegionalRequest">
+		<xs:sequence>
+			<xs:element name="ativo" type="xs:boolean"/>
+			<xs:element name="regionalRef" type="ns1:regionalRef"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="cadastrarCentroDeCustoRequest">
+		<xs:sequence>
+			<xs:element name="centroDeCusto" type="ns1:centroDeCusto" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="idCliente" type="xs:int" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="alterarStatusCentroDeCustoRequest">
+		<xs:sequence>
+			<xs:element name="ativo" type="xs:boolean"/>
+			<xs:element name="centroDeCustoRef" type="ns1:centroDeCustoRef"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="cadastrarSubCentroDeCustoRequest">
+		<xs:sequence>
+			<xs:element name="subCentroDeCusto" type="ns1:subCentroDeCusto" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="idCliente" type="xs:int" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="alterarStatusSubCentroDeCustoRequest">
+		<xs:sequence>
+			<xs:element name="ativo" type="xs:boolean"/>
+			<xs:element name="subCentroDeCustoRef" type="ns1:subCentroDeCustoRef"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="cadastrarContaContabilRequest">
+		<xs:sequence>
+			<xs:element name="contaContabil" type="ns1:contaContabil" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="alterarStatusContaContabilRequest">
+		<xs:sequence>
+			<xs:element name="ativo" type="xs:boolean"/>
+			<xs:element name="contaContabilRef" type="ns1:contaContabilRef"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="cadastrarFuncionarioRequest">
+		<xs:sequence>
+			<xs:element name="funcionario" type="ns1:funcionario" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="idCliente" type="xs:int" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="pesquisarFuncionarioRequest">
+		<xs:sequence>
+			<xs:element name="idClienteRef" type="xs:int" minOccurs="0"/>				
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="funcionarioRef" type="ns1:funcionarioRef"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="dataInicialAtualizacao" type="xs:dateTime"/>
+					<xs:element name="dataFinalAtualizacao" type="xs:dateTime"/>
+					<xs:element name="registroInicial">
+						<xs:simpleType>
+							<xs:restriction base="xs:int">
+								<xs:minInclusive value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="quantidadeRegistros" default="50" minOccurs="0" maxOccurs="1">
+						<xs:simpleType>
+							<xs:restriction base="xs:int">
+								<xs:maxInclusive value="100"/>
+								<xs:minInclusive value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="alterarStatusFuncionarioRequest">
+		<xs:sequence>
+			<xs:element name="ativo" type="xs:boolean"/>
+			<xs:element name="funcionarioRef" type="ns1:funcionarioRef"/>
+			<xs:element name="novaMatricula" type="xs:string" minOccurs="0"/>
+			<xs:element name="novoLogin" type="xs:string" minOccurs="0"/>			
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="cadastrarParametrizacaoCentroDeCustoRequest">
+		<xs:sequence>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="parametrizacaoCentroDeCustoAprovacao" type="ns1:parametrizacaoCentroDeCustoAprovacao"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="parametrizacaoCentroDeCustoSolicitacao" type="ns1:parametrizacaoCentroDeCustoSolicitacao"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="parametrizacaoCentroDeCustoDebito" type="ns1:parametrizacaoCentroDeCustoDebito"/>
+				</xs:sequence>
+			</xs:choice>
+			<xs:element name="idCliente" type="xs:int" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="deletarParametrizacaoCentroDeCustoRequest">
+		<xs:sequence>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="parametrizacaoCentroDeCustoAprovacaoRef" type="ns1:parametrizacaoCentroDeCustoAprovacaoRef"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="parametrizacaoCentroDeCustoSolicitacaoRef" type="ns1:parametrizacaoCentroDeCustoSolicitacaoRef"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="parametrizacaoCentroDeCustoDebitoRef" type="ns1:parametrizacaoCentroDeCustoDebitoRef"/>
+				</xs:sequence>
+			</xs:choice>
+			<xs:element name="idCliente" type="xs:int" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="cadastrarFornecedorRequest">
+		<xs:sequence>
+			<xs:element name="fornecedor" type="ns2:fornecedor"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="alterarStatusFornecedorRequest">
+		<xs:sequence>
+			<xs:element name="ativo" type="xs:boolean"/>
+			<xs:element name="fornecedorRef" type="ns2:fornecedorRef"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="cadastrarTarifarioRequest">
+		<xs:sequence>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="tarifarioHotel" type="ns2:tarifarioFornecedorHotel"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="tarifarioCarro" type="ns2:tarifarioFornecedorCarro"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="tarifarioOutro" type="ns2:tarifarioFornecedorOutro"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="tarifarioRodoviario" type="ns2:tarifarioFornecedorRodoviario"/>
+				</xs:sequence>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="alterarStatusTarifarioRequest">
+		<xs:sequence>
+			<xs:element name="ativo" type="xs:boolean"/>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="tarifarioHotelRef" type="ns2:tarifarioFornecedorHotelRef"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="tarifarioCarroRef" type="ns2:tarifarioFornecedorCarroRef"/>
+				</xs:sequence>
+				<xs:sequence>
+					<xs:element name="tarifarioOutroRef" type="ns2:tarifarioFornecedorOutroRef"/>
+				</xs:sequence>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="aprovarSolicitacaoRequest">
+		<xs:sequence>
+			<xs:element name="idSolicitacaoRef" type="xs:int"/>
+			<xs:element name="aprovador" type="ns1:funcionarioRef"/>
+			<xs:element name="controleCliente">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="reprovarSolicitacaoRequest">
+		<xs:sequence>
+			<xs:element name="idSolicitacaoRef" type="xs:int"/>
+			<xs:element name="aprovador" type="ns1:funcionarioRef"/>
+			<xs:element name="justificativa">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="controleCliente">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="50"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="inserirIdentificadorIntegracaoRequest">
+		<xs:sequence>
+			<xs:element name="identificadorIntegracaoRef" type="ns1:identificadorIntegracaoRef"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="cadastrarParametrizacaoViajanteRequest">
+		<xs:sequence>
+			<xs:element name="parametrizacaoViajanteAprovacao" type="ns1:parametrizacaoViajanteAprovacao"/>
+			<xs:element name="idCliente" type="xs:int" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="deletarParametrizacaoViajanteRequest">
+		<xs:sequence>
+			<xs:choice>
+				<xs:element name="parametrizacaoViajanteAprovacaoRef" type="ns1:parametrizacaoViajanteAprovacaoRef"/>
+				<xs:element name="parametrizacaoViajanteAprovacaoDeletarTodosRef" type="ns1:parametrizacaoViajanteAprovacaoDeletarTodosRef"/>
+			</xs:choice>
+			<xs:element name="idCliente" type="xs:int" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="pesquisarVendasConsolidadoraRequest">
+		<xs:sequence>
+			<xs:element name="produto" type="ns3:tipoProduto"/>
+			<xs:element name="dataInicial" type="xs:dateTime"/>
+			<xs:element name="dataFinal" type="xs:dateTime"/>
+			<xs:element name="registroInicial">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="quantidadeRegistros" default="50" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:maxInclusive value="50"/>
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="cadastrarFornecedorSourceRequest">
+		<xs:sequence>
+			<xs:element name="source" type="xs:string"/>
+			<xs:element name="idFornecedorSource" type="xs:string"/>
+			<xs:element name="fornecedorRef" type="ns2:fornecedorRef"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="inserirItemDespesaRequest">
+		<xs:sequence>
+			<xs:element name="version" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="idSolicitacaoRef" type="xs:int"/>
+			<xs:element name="tipoDespesa">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="valor" type="xs:double"/>
+			<xs:element name="moeda" type="ns3:moeda"/>
+			<xs:element name="imagem">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="deslocamento" type="ns1:deslocamento" minOccurs="0"/>
+			<xs:element name="observacao" type="xs:string" minOccurs="0"/>
+			<xs:element name="identificadorExterno" type="xs:string" minOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="cadastrarProjetoRequest">
+		<xs:sequence>
+			<xs:element name="projeto" type="ns1:projeto" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="alterarStatusProjetoRequest">
+		<xs:sequence>
+			<xs:element name="ativo" type="xs:boolean"/>
+			<xs:element name="projetoRef" type="ns1:projetoRef"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="atualizarBudgetRequest">
+		<xs:sequence>
+			<xs:element name="budget" type="ns1:budget"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="consultaBilheteCiaRequest">
+		<xs:sequence>
+			<xs:element name="consultaBilheteCia" type="ns1:consultaBilheteCia"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="cadastrarHoteisHomologadosRequest">
+		<xs:sequence>
+			<xs:element name="cadastrarHoteisHomologados" type="ns1:cadastrarHoteisHomologados"/>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="atrelarUsuariosRequest">
+		<xs:sequence>
+			<xs:element name="principal" type="ns1:funcionarioRef"/>
+			<xs:element name="secundario" type="ns1:funcionarioRef"/>
+			<xs:element name="acessoLogas" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="acessoExpense" type="xs:boolean" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="finalizarSolicitacaoRequest">
+		<xs:sequence>
+			<xs:element name="idSolicitacao" type="xs:int"/>
+			<xs:element name="controleClienteSolicitacao" type="xs:string"/>
+			<xs:element name="funcionario" type="ns1:funcionarioRef" minOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Funcionario que concluiu a solicitacao</xs:documentation>
+				</xs:annotation>			
+			</xs:element>
+			<xs:element name="aereoFinalizar" type="ns1:aereoFinalizar" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="hotelFinalizar" type="ns1:hotelFinalizar" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="carroFinalizar" type="ns1:carroFinalizar" minOccurs="0" maxOccurs="unbounded"/> 
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<xs:complexType name="cadastrarTreinamentoRequest">
+	    <xs:sequence>
+	      <xs:element name="ativo" type="xs:boolean"/>
+	      <xs:element name="codigoTreinamento" type="xs:string" minOccurs="1"/>
+	      <xs:element name="descricao" type="xs:string" minOccurs="0"/>
+	      <xs:element name="codigoTurma" type="xs:string" minOccurs="1"/>
+	      <xs:element name="codigoRegional" type="xs:string" minOccurs="1"/>
+	      <xs:element name="codigoCentroDeCusto" type="xs:string" minOccurs="1"/>
+	      <xs:element name="codigoSubCentroDeCusto" type="xs:string" minOccurs="0"/>
+	      <xs:element name="codigoRegionalContaContabil" type="xs:string" minOccurs="1"/>
+	      <xs:element name="codigoContaContabil" type="xs:string" minOccurs="1"/>
+	      <xs:element name="dataInicio" type="xs:dateTime"/>
+	      <xs:element name="dataFim" type="xs:dateTime"/>
+	      <xs:element name="pais" type="xs:string" minOccurs="0"/>
+	      <xs:element name="uf" type="xs:string" minOccurs="0"/>
+	      <xs:element name="cidade" type="xs:string" minOccurs="0"/>
+	      <xs:element name="iata" type="xs:string" minOccurs="0"/>
+	      <xs:element name="endereco" type="xs:string" minOccurs="1"/>
+	    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="cadastrarParticipanteTreinamentoRequest">
+    <xs:sequence>
+	  <xs:element name="matricula" type="xs:string" minOccurs="1"/>
+	  <xs:element name="codigoTreinamento" type="xs:string" minOccurs="1"/>
+      <xs:element name="desviaPoliticaAereo" type="xs:boolean"/>
+      <xs:element name="desviaPoliticaHotel" type="xs:boolean"/>
+      <xs:element name="desviaPoliticaCarro" type="xs:boolean"/>
+      <xs:element name="pais" type="xs:string" minOccurs="1"/>
+      <xs:element name="uf" type="xs:string" minOccurs="1"/>
+      <xs:element name="cidade" type="xs:string" minOccurs="0"/>
+      <xs:element name="iata" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="deletarTreinamentoRequest">
+    <xs:sequence>
+      <xs:element name="codigoTreinamento" type="xs:string" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+   <xs:complexType name="deletarParticipanteTreinamentoRequest">
+    <xs:sequence>
+	  <xs:element name="matricula" type="xs:string" minOccurs="1"/>
+	  <xs:element name="codigoTreinamento" type="xs:string" minOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="criarPreSolicitacaoRequest">
+    <xs:sequence>
+    	<xs:element name="solicitante" type="ns1:funcionarioRef"/>
+    	<xs:element name="passageiro" type="ns1:funcionarioRef"/>
+    	<xs:element name="acompanhantes" type="ns1:acompanhanteRef" minOccurs="0"/>
+    	<xs:element name="centroDeCustoRef" type="ns1:centroDeCustoRef"/>
+    	<xs:element name="pedidosAereos" type="ns4:pedidosAereos" minOccurs="0"/>
+    	<xs:element name="pedidosHoteis" type="ns5:pedidosHoteis" minOccurs="0"/>
+    	<xs:element name="pedidosCarros" type="ns6:pedidosCarros" minOccurs="0"/>
+    	<xs:element name="controleCliente" type="xs:string" minOccurs="0"/>
+    	<xs:element name="camposAdicionais" type="ns1:camposAdicionais" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="contaBancariaRequest">
+	<xs:sequence>
+	  	<xs:element name="funcionarioRef" type="ns1:funcionarioRef" minOccurs="1"/>
+	  	<xs:element name="instituicaoBancariaRef" type="ns1:instituicaoBancariaRef" minOccurs="1"/>
+		<xs:element name="agencia" type="xs:string" minOccurs="1"/>
+		<xs:element name="conta" type="xs:string" minOccurs="1"/>
+		<xs:element name="padrao" type="xs:boolean" minOccurs="0"/>
+		<xs:element name="status" type="xs:boolean" minOccurs="1"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="cadastrarControleClienteRequest">
+	<xs:sequence>
+		<xs:element name="descricao" type="xs:string" minOccurs="1"/>
+		<xs:element name="ativo" type="xs:boolean" minOccurs="1"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="importarDelegacaoParametrizacaoCentroDeCustoRequest">
+	<xs:sequence>
+		<xs:element name="funcionarioRefOrigem" type="ns1:funcionarioRef" minOccurs="1"/>
+		<xs:element name="funcionarioRefDestino" type="ns1:funcionarioRef" minOccurs="1"/>
+		<xs:element name="vencimentoDelegacao" type="xs:date" minOccurs="0"/>
+		<xs:choice minOccurs="0" maxOccurs="1">
+			<xs:sequence>
+				<xs:element name="delegarTodasParametrizacoes" type="ns1:delegarTodasParametrizacoes"/>
+			</xs:sequence>
+			<xs:sequence>
+				<xs:element name="parametrizacoesEspecificas" type="ns1:parametrizacoesEspecificas"/>
+			</xs:sequence>
+		</xs:choice>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="cadastrarUnidadeNegocioRequest">
+	<xs:sequence>
+		<xs:element name="codigo" type="xs:string" minOccurs="1"/>
+		<xs:element name="debitaBudget" type="xs:boolean" minOccurs="1"/>
+		<xs:element name="ativo" type="xs:boolean" minOccurs="1"/>
+		<xs:element name="descricao" type="xs:string" minOccurs="1"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="importarFaturaCartaoCreditoRequest">
+	<xs:sequence>
+		<xs:element name="tipoTransacao" type="ns3:tipoTransacaoCartao" minOccurs="1"/>
+		<xs:element name="dataTransacao" type="xs:date" minOccurs="1"/>
+		<xs:element name="valorTransacao" type="xs:double" minOccurs="1"/>
+		<xs:element name="numeroAutorizacao" type="xs:int" minOccurs="0"/>
+		<xs:element name="codCia" type="xs:string" minOccurs="0"/>
+		<xs:element name="bilhete" type="xs:string" minOccurs="0"/>
+		<xs:element name="valorBilhete" type="xs:double" minOccurs="0"/>
+		<xs:element name="valorTaxa" type="xs:double" minOccurs="0"/>
+		<xs:element name="numeroCartao" type="xs:string" minOccurs="0"/>
+		<xs:element name="campoGerencial1" type="xs:string" minOccurs="0"/>
+		<xs:element name="campoGerencial2" type="xs:string" minOccurs="0"/>
+		<xs:element name="campoGerencial3" type="xs:string" minOccurs="0"/>
+		<xs:element name="campoGerencial4" type="xs:string" minOccurs="0"/>
+		<xs:element name="campoGerencial5" type="xs:string" minOccurs="0"/>
+	</xs:sequence>
+  </xs:complexType>
+  
+  <xs:complexType name="pesquisarAdiantamentoRequest">
+		<xs:sequence>
+			<xs:sequence>
+				<xs:element name="version" type="xs:string" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="dataInicial" type="xs:dateTime" minOccurs="1" maxOccurs="1" nillable="false"/>
+				<xs:element name="dataFinal" type="xs:dateTime" minOccurs="1" maxOccurs="1" nillable="false"/>
+				<xs:element name="registroInicial" minOccurs="1" maxOccurs="1" nillable="false">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="quantidadeRegistros" default="50" minOccurs="0" maxOccurs="1">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:maxInclusive value="50"/>
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+			
+			<xs:element name="status" type="ns3:adiantamentoStatus" default="PENDENTE" minOccurs="1" maxOccurs="1"/>
+			
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="pesquisarRelatorioDespesasRequest">
+		<xs:sequence>
+			<xs:element name="version" type="xs:string" minOccurs="0" maxOccurs="1"/>	
+			<xs:sequence>
+				<xs:element name="dataInicial" type="xs:dateTime" minOccurs="1" maxOccurs="1" nillable="false"/>
+				<xs:element name="dataFinal" type="xs:dateTime" minOccurs="1" maxOccurs="1" nillable="false"/>
+				<xs:element name="registroInicial" minOccurs="1" maxOccurs="1" nillable="false">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="quantidadeRegistros" default="50" minOccurs="0" maxOccurs="1">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:maxInclusive value="50"/>
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+			
+			<xs:element name="status" type="ns3:presacaoContasStatus" default="PENDENTE" minOccurs="0" maxOccurs="1"/>
+			
+		</xs:sequence>
+	</xs:complexType>
+	
+	
+	<xs:complexType name="importarDespesaRequest">
+		<xs:sequence>
+			<xs:element name="funcionario" type="ns1:funcionarioRef" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="dataTransacao" type="xs:dateTime" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="moeda" type="ns3:moeda" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="valorTransacao" type="xs:double" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="moedaOriginal" type="ns3:moeda" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="valorTransacaoOriginal" type="xs:double" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="estabelecimento" type="ns7:codigoElemento" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codigoAutorizacao" type="ns7:codigoElemento50" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="qualificadorDespesa" type="ns3:qualificadorDespesa" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="enderecoPartida" type="ns7:codigoElemento" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="horaPartida" type="xs:time" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="enderecoChegada" type="ns7:codigoElemento" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="horaChegada" type="xs:time" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="distancia" type="xs:double" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dataContabil" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="codigoCartao" type="ns7:codigoElemento50" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="cidade" type="ns7:codigoElemento50" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="paisOrigem" type="ns7:codigoElemento50" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="numeroIdentificador" type="xs:long" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dataVencimentoFatura" type="xs:date" minOccurs="0"/>
+	  		<xs:element name="qualificadorTransacao" type="ns3:qualificadorTransacao" minOccurs="0"/>
+	  		<xs:element name="valorTotalFatura" type="xs:double" minOccurs="0"/>
+	  		<xs:element name="numeroCartaoMascarado6d" type="ns3:numeroCartaoMascarado" minOccurs="0"/>
+	  		<xs:element name="idTipoCartao" type="ns3:tipoCartao" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+  
+    <xs:complexType name="liberarAdiantamentoRequest">
+		<xs:sequence>
+			<xs:element name="version" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="idSolicitacao" type="xs:int" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="idAdiantamento" type="xs:int" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="status" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="funcionarioLiberacao" type="ns1:funcionarioRef" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="dataPagamento" type="xs:date" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="numeroAutorizacao" type="ns7:codigoElemento50" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="observacao" type="ns7:codigoElemento" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence> 
+	</xs:complexType>
+	
+	 <xs:complexType name="contabilizarRelatorioDespesasRequest">
+		<xs:sequence>
+			<xs:element name="version" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="idSolicitacao" type="xs:int" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="idRelatorioDespesas" type="xs:int" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="dataContabilizacao" type="xs:date" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="status" type="xs:boolean" minOccurs="1" maxOccurs="1" nillable="false"/>
+			<xs:element name="numeroAutorizacao" type="ns7:codigoElemento50" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="observacaoContabilizacao" type="ns7:codigoElemento" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence> 
+	</xs:complexType>
+	
+	<xs:complexType name="pesquisarLogsAcessoRequest">
+		<xs:sequence>
+				<xs:element name="dataInicial" type="xs:dateTime" minOccurs="1" maxOccurs="1" nillable="false"/>
+				<xs:element name="dataFinal" type="xs:dateTime" minOccurs="1" maxOccurs="1" nillable="false"/>
+				<xs:element name="registroInicial" minOccurs="1" maxOccurs="1" nillable="false">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="quantidadeRegistros" default="50" minOccurs="0" maxOccurs="1">
+					<xs:simpleType>
+						<xs:restriction base="xs:int">
+							<xs:maxInclusive value="50"/>
+							<xs:minInclusive value="1"/>
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:sequence>
+	</xs:complexType>
+	
+	<!-- listarCentroDeCustoRequest -->
+	<xs:complexType name="listarCentroDeCustoRequest">
+		<xs:sequence>
+			<xs:element name="ativo" type="xs:boolean" default="true" minOccurs="1"/>						
+					<xs:element name="registroInicial" default="1" minOccurs="1" maxOccurs="1" nillable="false">
+						<xs:simpleType>
+							<xs:restriction base="xs:int">
+								<xs:minInclusive value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="quantidadeRegistros" default="50" minOccurs="1" maxOccurs="1">
+						<xs:simpleType>
+							<xs:restriction base="xs:int">
+								<xs:maxInclusive value="50"/>
+								<xs:minInclusive value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>					
+					<xs:element name="codigo" type="xs:string" minOccurs="0"/>			
+					<xs:element name="regionalRef" type="ns1:regionalRef" minOccurs="0"/>				
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- listarSubCentroDeCustoRequest -->
+	<xs:complexType name="listarSubCentroDeCustoRequest">
+		<xs:sequence>
+			<xs:element name="ativo" type="xs:boolean" default="true" minOccurs="1"/>						
+					<xs:element name="registroInicial" default="1" minOccurs="1" maxOccurs="1" nillable="false">
+						<xs:simpleType>
+							<xs:restriction base="xs:int">
+								<xs:minInclusive value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name="quantidadeRegistros" default="50" minOccurs="1" maxOccurs="1">
+						<xs:simpleType>
+							<xs:restriction base="xs:int">
+								<xs:maxInclusive value="50"/>
+								<xs:minInclusive value="1"/>
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>					
+					<xs:element name="codigo" type="xs:string" minOccurs="0"/>			
+					<xs:element name="regionalRef" type="ns1:regionalRef" minOccurs="0"/>				
+		</xs:sequence>
+	</xs:complexType>
+	
+	<!-- listarParametrizacaoCentroDeCustoRequest -->
+	<xs:complexType name="listarParametrizacaoCentroDeCustoRequest">
+		<xs:sequence>
+			<xs:element name="ativo" type="xs:boolean" default="true" minOccurs="1"/>
+			<xs:element name="centroDeCusto" type="ns7:codigoElemento" minOccurs="0" default=" "/>
+			<xs:element name="registroInicial" default="1" minOccurs="1" maxOccurs="1" nillable="false">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="quantidadeRegistros" default="50" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:maxInclusive value="50"/>
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="pesquisarConciliacaoCartaoRequest">
+		<xs:sequence>
+			<xs:element name="numeroProtocolo" type="xs:int" minOccurs="0"/>
+			<xs:element name="dataVencimento" type="xs:date" minOccurs="0"/>
+			<xs:element name="codRegional" type="xs:string" minOccurs="0"/>
+			<xs:element name="statusAprovacao" type="ns3:statusAprovacaoConciliacao" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="registroInicial" minOccurs="1" maxOccurs="1" nillable="false">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="quantidadeRegistros" default="50" minOccurs="0" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:maxInclusive value="50"/>
+						<xs:minInclusive value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="cancelarSolicitacaoRequest">
+		<xs:sequence>
+			<xs:element name="idSolicitacaoRef" type="xs:int"/>
+			<xs:element name="funcionarioRef" type="ns1:funcionarioRef"/>
+			<xs:element name="justificativa">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:maxLength value="255"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="pingRequest">
+		<xs:sequence>
+		</xs:sequence>
+	</xs:complexType>
+	
+	<xs:complexType name="pesquisarContaBancariaRequest">
+		<xs:sequence>
+			<xs:element name="funcionarioContaBancariaRef" type="ns1:funcionarioContaBancariaRef"/>
+			<xs:element name="padrao" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="status" type="xs:boolean" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	
+</xs:schema>
