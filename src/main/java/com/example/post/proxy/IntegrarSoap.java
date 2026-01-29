@@ -2,6 +2,7 @@ package com.example.post.proxy;
 
 import br.com.seuprojeto.soap.client.*;
 import jakarta.xml.bind.JAXBElement;
+import org.hibernate.mapping.List;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -55,13 +56,45 @@ public class IntegrarSoap {
         System.out.println("Resultado: " + response.getResultadoAcao());
         System.out.println("Quantidade: " + response.getNumeroSolicitacoes());
 
+        System.out.println("----------");
 
-        if (response != null) {
+        if (response != null && response.getSolicitacao() != null) {
             for (Solicitacao solicitacao : response.getSolicitacao()) {
                 System.out.println("ID: " + solicitacao.getIdSolicitacao());
-                System.out.println("Status: " + solicitacao.getStatusSolicitacao());
-                System.out.println("Solicitante: " + solicitacao.getSolicitante());
-                System.out.println("-------------------");
+                System.out.println("Status: " + solicitacao.getStatusSolicitacao().name());
+                System.out.println("Solicitante: " + solicitacao.getSolicitante().getNome());
+
+                if (solicitacao.getPassageiros() != null &&
+                solicitacao.getPassageiros().getPassageiro() != null) {
+                    for (Passageiro passageiro : solicitacao.getPassageiros().getPassageiro()) {
+                        System.out.println("Passageiro: " + passageiro.getNomeCompleto());
+
+                        if (solicitacao.getAereos() != null &&
+                        solicitacao.getAereos().getAereo() != null) {
+                            for (Aereo aereo : solicitacao.getAereos().getAereo()) {
+                                System.out.println("Cia: " + aereo.getCiaValidadora());
+                                System.out.println("Loc: " + aereo.getLocalizador());
+
+                                if (solicitacao.getAereos().getAereo() != null &&
+                                aereo.getAereoSeguimento() != null) {
+                                    for (AereoSeguimento aereoSeguimento : aereo.getAereoSeguimento()) {
+                                        System.out.println("Cidade Origem: " + aereoSeguimento.getCidadeOrigem());
+                                        System.out.println("Data Saida: " + aereoSeguimento.getDataSaida());
+                                        System.out.println("Cidade Destino: " + aereoSeguimento.getCidadeDestino());
+                                        System.out.println("Data Chegada: " + aereoSeguimento.getDataChegada());
+
+                                        System.out.println("--------------");
+
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+
+
 
             }
 
@@ -73,5 +106,5 @@ public class IntegrarSoap {
 
 
 
-    }
+
 }
