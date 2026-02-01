@@ -7,7 +7,7 @@ spring:
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
     properties:
       hibernate:
@@ -15,7 +15,6 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   soap:
-    lemontech:
       key-client: base_teste_qa
       username: d0804903bf4eeefddf55c63fc600ed5c
       password: 5c11ca0bf738c2dbb460479530b26db0

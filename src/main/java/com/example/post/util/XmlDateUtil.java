@@ -1,4 +1,4 @@
-package com.example.post.logicadeconversao;
+package com.example.post.util;
 
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -6,9 +6,9 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.util.GregorianCalendar;
 
-public class XmlDataUtil {
+public class XmlDateUtil {
 
-    private XmlDataUtil() {
+    private XmlDateUtil() {
 
     }
 
