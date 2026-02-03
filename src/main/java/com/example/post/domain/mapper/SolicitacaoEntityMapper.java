@@ -1,18 +1,39 @@
 package com.example.post.domain.mapper;
 
 import br.com.seuprojeto.soap.client.*;
+import com.example.post.domain.StatusSolicitacaoEntity;
 import com.example.post.domain.entity.AereoEntity;
 import com.example.post.domain.entity.AereoSeguimentoEntity;
 import com.example.post.domain.entity.PassageiroEntity;
 import com.example.post.domain.entity.SolicitacaoEntity;
 
+/**
+ * Mapper responsável por converter objetos do modelo SOAP
+ * ({@link Solicitacao}) em entidades de domínio JPA
+ * ({@link SolicitacaoEntity}).
+ *
+ * Centraliza a lógica dde conversão entre modelo externo
+ * e o modelo interno da aplicação, preservando relacionamentos
+ */
 public class SolicitacaoEntityMapper {
-
+    /**
+     * Converte uma {@link Solicitacao} proveniente do serviço SOAP
+     * em uma {@link SolicitacaoEntity}.
+     *
+     * O método realiza o mapeamento dos dados principais da solciitação,
+     * passageiros, informações aéreas e seus respectivos segmentos,
+     * mantendo os relacionamentos entre as entidades.
+     *
+     * @param solicitacaoSoap objeto retornado pelo serviço SOAP
+     * @return entidade {@link SolicitacaoEntity} pronta para persistência
+     */
     public static SolicitacaoEntity toEntity(Solicitacao solicitacaoSoap) {
 
         SolicitacaoEntity entity = new SolicitacaoEntity();
         entity.setIdSolicitacao(solicitacaoSoap.getIdSolicitacao());
-        entity.setStatus(StatusSolicitacao.valueOf(solicitacaoSoap.getStatusSolicitacao().name()));
+        entity.setStatus(
+                StatusSolicitacaoEntity.valueOf(
+                        solicitacaoSoap.getStatusSolicitacao().name()));
         entity.setSolicitante(
                 solicitacaoSoap.getSolicitante().getNome()
         );

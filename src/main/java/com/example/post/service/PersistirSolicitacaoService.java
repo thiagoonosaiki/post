@@ -8,15 +8,37 @@ import com.example.post.repository.SolicitacaoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+/**
+ * Serviço responsável por persistir as solicitações obtidas
+ * através da integração SOAP.
+ *
+ * Converter os objetos do modelo externo (SOAP/JAXB)
+ * em entidades de dominio JPA e realiza a persistência
+ * no banco de dados.
+ */
 @Service
 public class PersistirSolicitacaoService {
 
     private final SolicitacaoRepository repository;
 
+    /**
+     * Construtor com injeção de dependência do repositório JPA.
+     *
+     * @param repository repositório responsável pela persistência da entidade {@link SolicitacaoEntity}
+     */
     public PersistirSolicitacaoService(SolicitacaoRepository repository) {
         this.repository = repository;
     }
 
+    /**
+     * Persiste no banco de dados as solicitações retornadas
+     * pelo serviço SOAP.
+     *
+     * O método ignora respostas nulas ou vazias e garente
+     * que toda a operação ocorra dentro de uma transação.
+     *
+     * @param response resposta retornada pelo serviço SOAP
+     */
     @Transactional
     public void salvar(PesquisarSolicitacaoResponse response) {
 

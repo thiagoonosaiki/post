@@ -4,19 +4,29 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "soap.lemontech")
+@ConfigurationProperties(prefix = "soap")
 public class LemontechProperties {
 
     private String keyClient;
-    private String userName;
+
+    private String usarname;
+
     private String password;
 
-    public String getUserName() {
-        return userName;
+    public String getKeyClient() {
+        return keyClient;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setKeyClient(String keyClient) {
+        this.keyClient = keyClient;
+    }
+
+    public String getUsarname() {
+        return usarname;
+    }
+
+    public void setUsarname(String usarname) {
+        this.usarname = usarname;
     }
 
     public String getPassword() {
@@ -25,13 +35,5 @@ public class LemontechProperties {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getKeyClient() {
-        return keyClient;
-    }
-
-    public void setKeyClient(String keyClient) {
-        this.keyClient = keyClient;
     }
 }

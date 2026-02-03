@@ -1,25 +1,55 @@
 package com.example.post.domain.entity;
 
-import br.com.seuprojeto.soap.client.StatusSolicitacao;
+import com.example.post.domain.StatusSolicitacaoEntity;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
-
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Entidade que representa uma solicitaçã ode viagem.
+ *
+ * Atua como raiz do agregado, concentrando as informações
+ * principais da solicitacao, seus passageiros e dados aéreos.
+ */
 @Entity
 @Table(name = "solicitacao")
 public class SolicitacaoEntity {
 
+    /**
+     * Identificador da solicitação.
+     *
+     * O valor é proveniente do sistema externo (SOAP)
+     * sendo utilizado como chave primária.
+     */
     @Id
     private int idSolicitacao;
 
-    private StatusSolicitacao status;
+    /**
+     * Status atual da solicitação.
+     */
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private StatusSolicitacaoEntity status;
 
+    /**
+     * Nome do solicitante da viagem.
+     */
+    @Column(name = "solicitante")
     private String solicitante;
 
+    /**
+     * lista de passageiros associados à solicitação.
+     */
+    @JsonManagedReference
     @OneToMany(mappedBy = "solicitacao", cascade = CascadeType.ALL)
     private List<PassageiroEntity> passageiros = new ArrayList<>();
+
+    /**
+     * Lista de informações aéreas associadas á solciitação.
+     */
+    @OneToMany(mappedBy = "solicitacao", cascade = CascadeType.ALL)
+    private List<AereoEntity> aereos = new ArrayList<>();
 
     public int getIdSolicitacao() {
         return idSolicitacao;
@@ -29,11 +59,11 @@ public class SolicitacaoEntity {
         this.idSolicitacao = idSolicitacao;
     }
 
-    public StatusSolicitacao getStatus() {
+    public StatusSolicitacaoEntity getStatus() {
         return status;
     }
 
-    public void setStatus(StatusSolicitacao status) {
+    public void setStatus(StatusSolicitacaoEntity status) {
         this.status = status;
     }
 
@@ -60,7 +90,4 @@ public class SolicitacaoEntity {
     public void setAereos(List<AereoEntity> aereos) {
         this.aereos = aereos;
     }
-
-    @OneToMany(mappedBy = "solicitacao", cascade = CascadeType.ALL)
-    private List<AereoEntity> aereos = new ArrayList<>();
 }
