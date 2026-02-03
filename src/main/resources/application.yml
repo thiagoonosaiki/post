@@ -12,6 +12,7 @@ spring:
     properties:
       hibernate:
         format_sql: true
+        generate_statics: true
     database-platform: org.hibernate.dialect.PostgreSQLDialect
 
   soap:
@@ -20,3 +21,9 @@ spring:
       password: 5c11ca0bf738c2dbb460479530b26db0
 server:
   port: 8080
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus
